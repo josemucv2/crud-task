@@ -10,9 +10,9 @@ export const ENDPOINTS = {
     TASK: {
         BASE: '/task',
         CREATE: '/create',
-        DELETE: '/delete',
-        UPDATE: '/update',
-        GET: '/get',
+        DELETE: '/delete/:id',
+        UPDATE: '/update/:id',
+        GET: '/get/:id',
         GET_ALL: '/',
     }
 }

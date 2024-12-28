@@ -9,7 +9,7 @@ import User from "../model/user-model";
  */
 
 
-const registerUserRepository = async (userData: Partial<IUser>) => {
+const registerUser = async (userData: Partial<IUser>) => {
     try {
         const newUser = await User.create(userData);
 
@@ -33,6 +33,7 @@ const findByEmailOrUsername = async (user: string): Promise<IUser | null> => {
     const isEmail = /\S+@\S+\.\S+/.test(user);
 
     const userIdentifier = isEmail ? { email: user } : { username: user };
+    console.log(userIdentifier,'24981462.Jm')
     const userFind = await User.findOne({ ...userIdentifier });
     if (!userFind) {
         throw {
@@ -66,7 +67,7 @@ const updateUser = async (id: string, updateData: Partial<IUser>): Promise<IUser
 };
 
 export default {
-    registerUserRepository,
+    registerUser,
     findByEmailOrUsername,
     updateUser
 }

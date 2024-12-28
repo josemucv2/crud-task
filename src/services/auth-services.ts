@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 import { IUser } from "../interfaces/IUser";
-import UserRepository from "../repository/user-repository";
+import UserRepositories from "../repositories/user-repositories";
 import bcrypt from "bcryptjs";
 
 
@@ -12,7 +12,7 @@ const registerUserServices = async (user: IUser) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userRegistered = await UserRepository.registerUserRepository({
+    const userRegistered = await UserRepositories.registerUser({
         password: hashedPassword,
         email: email.toLowerCase(),
         ...rest
@@ -32,7 +32,7 @@ const loginServices = async ({ user, password }: { user: string, password: strin
 
         const token = jwt.sign({ user: userValidate }, 'HS256', { expiresIn: "672h" });
 
-        const userUpdatingToken = await UserRepository.updateUser(id, { token })
+        const userUpdatingToken = await UserRepositories.updateUser(id, { token })
 
         return {
             user: userUpdatingToken,
@@ -52,7 +52,7 @@ const _verifyUser = async ({ identifier, password }: { identifier: string, passw
 
 
     try {
-        const user = await UserRepository.findByEmailOrUsername(identifier);
+        const user = await UserRepositories.findByEmailOrUsername(identifier);
 
         if (!user) {
             throw {
