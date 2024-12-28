@@ -8,6 +8,7 @@ import { dbConnection } from './dbconnection';
 import AuthRouter from '../routes/auth-routes.';
 import TaskRouter from '../routes/task-router';
 import { validToken } from '../middleware/valid-token';
+import { setupSwagger } from '../config/swagger'
 
 
 const registerdRoutes = () => ({
@@ -36,6 +37,7 @@ export const startServer = async () => {
 
     await dbConnection();
     configureMiddlewares(app);
+    setupSwagger(app);
     configureRoutes(app, paths);
 
     console.log("Available routes:", paths);
@@ -46,5 +48,6 @@ export const startServer = async () => {
 
     app.listen(port, () => {
         console.log(`Server running on port ${port}`);
+        console.log(`Documentación disponible en http://localhost:${port}/api-docs`);
     });
 };

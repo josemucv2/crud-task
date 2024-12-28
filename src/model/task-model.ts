@@ -10,6 +10,12 @@ const TaskSchema = new Schema<ITask>(
     },
 );
 
-const Task = model<ITask>("task", TaskSchema);
 
-export default Task;
+TaskSchema.methods.toJSON = function () {
+    let task = this;
+    let taskObject = task.toObject();
+    delete taskObject.__v;
+    return taskObject;
+};
+
+export default model<ITask>("task", TaskSchema);

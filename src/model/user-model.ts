@@ -34,6 +34,7 @@ UserSchema.methods.toJSON = function () {
     let userObject = user.toObject();
     delete userObject.password;
     delete userObject.token;
+    delete userObject.__v;
     return userObject;
 };
 export default mongoose.model<IUser>('User', UserSchema);

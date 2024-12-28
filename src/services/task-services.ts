@@ -1,22 +1,28 @@
 import { ITask } from "../interfaces/ITask";
-import TaskRepository from '../repository/task-repository'
+import TaskRepositories from '../repositories/task-repositories'
 
-const create = async (data: Partial<ITask>): Promise<ITask> => {
+const create = async (data: { title: string, description?: string }): Promise<ITask> => {
     if (!data.title) {
         throw {
             statusCode: 400,
             message: "Task title is required",
         };
     }
-    return TaskRepository.create(data);
+
+    const newTask = {
+        ...data,
+        completed: false,
+        createdAt: new Date()
+    }
+    return await TaskRepositories.create(newTask);
 };
 
 const findAll = async (filter: { completed?: boolean }) => {
-    return TaskRepository.findAll(filter);
+    return await TaskRepositories.findAll(filter);
 };
 
 const findById = async (id: string): Promise<ITask | null> => {
-    const task = TaskRepository.findById(id)
+    const task = await TaskRepositories.findById(id)
 
     if (!task) {
         throw {
@@ -28,11 +34,11 @@ const findById = async (id: string): Promise<ITask | null> => {
 };
 
 const update = async (id: string, data: Partial<ITask>): Promise<ITask | null> => {
-    return await TaskRepository.update(id, data);
+    return await TaskRepositories.update(id, data);
 };
 
 const remove = async (id: string) => {
-    return await TaskRepository.remove(id);
+    return await TaskRepositories.remove(id);
 };
 
 export default {
