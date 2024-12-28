@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { ENDPOINTS } from '../config/path';
+import AuthController from '../controller/auth-controller';
 
 
 const AuthRouter = Router();
 
-AuthRouter.post(ENDPOINTS.AUTH.REGISTER, () => console.log(''));
-AuthRouter.post(ENDPOINTS.AUTH.LOGIN, () => console.log(''));
+AuthRouter.post(ENDPOINTS.AUTH.REGISTER, AuthController.registerUserController);
 
 export default AuthRouter;
