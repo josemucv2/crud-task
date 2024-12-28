@@ -3,11 +3,16 @@ import { API, ENDPOINTS } from "./path";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
-import AuthRouter from '../routes/auth-routes.';
 import { dbConnection } from './dbconnection';
+
+import AuthRouter from '../routes/auth-routes.';
+import TaskRouter from '../routes/task-router';
+import { validToken } from '../middleware/valid-token';
+
 
 const registerdRoutes = () => ({
     auth: `${API}${ENDPOINTS.AUTH.BASE}`,
+    task: `${API}${ENDPOINTS.TASK.BASE}`,
 })
 
 
@@ -21,6 +26,7 @@ const configureMiddlewares = (app: Express) => {
 
 const configureRoutes = (app: Express, paths: { [key: string]: string }) => {
     app.use(paths.auth, AuthRouter);
+    app.use(paths.task, validToken, TaskRouter);
 };
 
 export const startServer = async () => {
