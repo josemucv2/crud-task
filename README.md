@@ -18,7 +18,7 @@ Tasks API es un proyecto para gestionar tareas, proporcionando endpoints para cr
 Swagger está habilitado en este proyecto. Puedes acceder a la documentación interactiva en:
 
 ```bash
-https://https://coally-api-2.onrender.com/api-docs/api-docs
+https://https://coally-api-2.onrender.com/api-docs
 ```
 
 ## Arquitectura del Proyeto
