@@ -11,15 +11,15 @@ const registerdRoutes = () => ({
 })
 
 
-const configureMiddlewares = (app: Express): void => {
+const configureMiddlewares = (app: Express) => {
     app.use(cors());
     app.use(morgan("short"));
     app.use(express.json());
     app.use(helmet());
-    app.use(express.urlencoded());
+    app.use(express.urlencoded({ extended: true }));
 };
 
-const configureRoutes = (app: Express, paths: { [key: string]: string }): void => {
+const configureRoutes = (app: Express, paths: { [key: string]: string }) => {
     app.use(paths.auth, AuthRouter);
 };
 
