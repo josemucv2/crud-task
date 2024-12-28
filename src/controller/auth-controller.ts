@@ -20,6 +20,23 @@ const registerUserController = async (req: Request<{}, {}, IUser>, res: Response
     }
 }
 
+const loginController = async (req: Request<{}, {}, { identifier: string, password: string }>, res: Response) => {
+    try {
+
+        const { identifier, password } = req.body;
+
+        const user = await AuthServices.loginServices({ user: identifier, password });
+
+        sendSuccess({ res, data: user, message: 'Usuario Logueado', statusCode: 200, });
+
+    } catch (error) {
+
+        handleError({ res, error });
+
+    }
+}
+
 export default {
-    registerUserController
+    registerUserController,
+    loginController
 }
