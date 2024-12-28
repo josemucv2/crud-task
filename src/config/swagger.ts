@@ -15,6 +15,10 @@ const swaggerOptions = {
                 url: 'http://localhost:3000',
                 description: 'Servidor local',
             },
+            {
+                url: 'https://https://coally-api-2.onrender.com',
+                description: 'Servidor prod',
+            },
         ],
     },
     apis: ['./src/doc/*.ts'], // Asegúrate de apuntar al directorio donde defines las rutas
