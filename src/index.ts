@@ -1,6 +1,8 @@
-import dontenv from 'dotenv';
-import { startServer } from './config/server'
+import dotenv from 'dotenv';
+import { startServer } from './config/server';
 
-dontenv.config()
+// Load environment variables from .env file
+dotenv.config();
 
-startServer()
+// Start the server
+startServer();

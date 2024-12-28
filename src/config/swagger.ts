@@ -8,7 +8,7 @@ const swaggerOptions = {
         info: {
             title: 'API Documentation',
             version: '1.0.0',
-            description: 'Documentación de la API para tu aplicación',
+            description: 'Documentación de la API de Coally-api',
         },
         servers: [
             {
@@ -21,7 +21,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ['./src/doc/*.ts'], // Asegúrate de apuntar al directorio donde defines las rutas
+    apis: ['./src/doc/*.ts'],
 };
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);

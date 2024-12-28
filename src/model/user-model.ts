@@ -1,8 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 import { IUser } from "../interfaces/IUser";
 
+/**
+ * Schema for User model in the database.
+ * 
+ * @typedef {Object} User
+ * @property {string} username - The username of the user (unique and required).
+ * @property {string} email - The email of the user (unique and required).
+ * @property {string} password - The password of the user (required).
+ * @property {string} [token] - The token of the user (optional).
+ */
 const UserSchema = new Schema<IUser>({
-
     username: {
         type: String,
         unique: true,
@@ -14,21 +22,17 @@ const UserSchema = new Schema<IUser>({
             message: props => `${props.value} cannot contain spaces!`
         }
     },
-
     email: { type: String, unique: true, required: true },
-
     password: { type: String, required: true },
-
     token: { type: String, required: false },
-
 });
 
 /**
- * User model based on the user schema.
+ * Removes sensitive fields (`password`, `token`, `__v`) when converting the user object to JSON.
  * 
- * @type {mongoose.Model<IUser>}
+ * @function toJSON
+ * @returns {Object} User object without sensitive fields.
  */
-
 UserSchema.methods.toJSON = function () {
     let user = this;
     let userObject = user.toObject();
@@ -37,4 +41,5 @@ UserSchema.methods.toJSON = function () {
     delete userObject.__v;
     return userObject;
 };
+
 export default mongoose.model<IUser>('User', UserSchema);
