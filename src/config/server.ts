@@ -35,7 +35,7 @@ export const startServer = async () => {
     console.log("Available routes:", paths);
 
     app.get("/", (req, res) => {
-        res.send("money api");
+        res.send("coally api");
     });
 
     app.listen(port, () => {
