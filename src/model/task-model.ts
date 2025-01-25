@@ -16,6 +16,7 @@ const TaskSchema = new Schema<ITask>(
         description: { type: String, required: false, trim: true, },
         completed: { type: Boolean, required: true, default: false, },
         createdAt: { type: Date, default: Date.now, required: true, },
+        expirationAt: { type: Date, required: true }
     },
 );
 

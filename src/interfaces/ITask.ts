@@ -43,4 +43,6 @@ export interface ITask extends Document {
      * @required
      */
     createdAt: Date,
+
+    expirationAt: Date
 }

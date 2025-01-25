@@ -19,7 +19,7 @@ const UserSchema = new Schema<IUser>({
             validator: function (v: string) {
                 return !/\s/.test(v);
             },
-            message: props => `${props.value} cannot contain spaces!`
+            message: props => `${props.value} no puede contener espacios`
         }
     },
     email: { type: String, unique: true, required: true },
