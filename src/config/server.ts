@@ -35,7 +35,13 @@ const registerdRoutes = () => ({
  * @param {Express} app - The Express application instance.
  */
 const configureMiddlewares = (app: Express) => {
-    app.use(cors());
+    app.use(
+        cors({
+            origin: ["http://localhost:5173"], // Permitir la conexión desde Vite en localhost
+            methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Métodos permitidos
+            allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
+        })
+    );
     app.use(morgan("short"));
     app.use(express.json());
     app.use(helmet());
